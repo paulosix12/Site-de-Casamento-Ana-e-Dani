@@ -159,7 +159,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-heading">
-                        <h2>Quer nós dar um Presente ?</h2>
+                        <h2>Quer nos dar um Presente ?</h2>
                         <span>É somente uma chave pix, não se iluda,</span>
                         <span>Arrasta pro lado para mais opções</span>
 
@@ -172,6 +172,7 @@
                 <div class="col-lg-12">
                     <div class="women-item-carousel">
                         <div class="owl-women-item owl-carousel">
+                            
                             <!-- Photo 1: Um corte de cabelo  -->
                             <div class="item">
                                 <div class="thumb">
@@ -282,7 +283,7 @@
                                     </div>
 
                                       <!-- Photo 6: Lupa  -->
-                                      <div class="item">
+                                    <div class="item">
                                         <div class="thumb">
                                             <div class="hover-content">
                                                 <ul>
@@ -317,9 +318,6 @@
                                             <span>R$ 200.00</span>
                                         </div>
                                     </div>
-                            
-                            
-
                         </div>
                     </div>
                 </div>
@@ -388,7 +386,7 @@
                     <div class="row">
                         <div class="col-6">
                             <ul>
-                                <li>Localização:<br><span>Rua Mariano Jataí Marcondes Ferraz, 140 - Centro de Sumaré - <a href="https://goo.gl/maps/pUMLoemPvdsC87SZ8">Abrir no Maps</a></span></li>
+                                <li>Localização:<br><span>Rua Mariano Jataí Marcondes Ferraz, 140 - Centro de Sumaré - <a href="https://goo.gl/maps/pUMLoemPvdsC87SZ8" style="color: blue;">Abrir no Maps</a></span></li>
                                 <li>Zap Zap:<br><span>19 99494-2448</span></li>
                             </ul>
                         </div>
@@ -467,7 +465,7 @@
         function myFunction() {
             let text = document.getElementById('idHolder').innerHTML;
 
-                navigator.clipboard.writeText(text);
+                navigator.clipboard.readText(text);
                 alert('Chave pix copiada para a area de transferencia');
             }
 
