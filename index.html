@@ -302,7 +302,7 @@
 
                                     
                                       <!-- Photo 6: Beijo  -->
-                                      <div class="item">
+                                    <div class="item">
                                         <div class="thumb">
                                             <div class="hover-content">
                                                 <ul>
@@ -316,8 +316,26 @@
                                         <div class="down-content">
                                             <h4>Beijinho do noivo</h4>
                                             <span>R$ 200.00</span>
-                                        </div></a>
+                                       </div></a>
                                     </div>
+
+                                    <div class="item">
+                                        <div class="thumb">
+                                            <div class="hover-content">
+                                                <ul>
+                                                    <li>
+                                                        <a href="" data-toggle="modal" data-id="00020126330014BR.GOV.BCB.PIX0111434034458365204000053039865802BR5923Ana Claudia de Oliveira6009SAO PAULO610805409000622305199DozvQr8VYNFoBl57rf6304DE5F" class="open-homeEvents" data-target="#exampleModalLong"><i class="fa fa-shopping-cart"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <img src="assets/images/money.jpeg" alt="">
+                                        </div>
+                                        <div class="down-content">
+                                            <h4>Outro valor ?</h4>
+                                            <span>R$ XX.XX</span>
+                                       </div></a>
+                                    </div>
+
                         </div>
                     </div>
                 </div>
@@ -336,10 +354,12 @@
             </button>
             </div>
             <div class="modal-body">
-                <span id="idHolder"></span>	
+                <pre><span id="idHolder"></span></pre>	
+                
+
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary"   data-dismiss="modal" data-clipboard-target="#idHolder" onclick="copypix()">Copiar</button>
+            <input type="button" value="Copiar Chave" class="buttonClass btn btn-primary" value="Copy" data-clipboard-target="#idHolder"/>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             </div>
         </div>
@@ -440,7 +460,8 @@
     <script src="assets/js/slick.js"></script> 
     <script src="assets/js/lightbox.js"></script> 
     <script src="assets/js/isotope.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+    
 
     
     <!-- Global Init -->
@@ -469,17 +490,14 @@
         });
         
 
-        function copypix() {
-            var copyText = document.getElementById("idHolder").innerHTML;
-            var textArea = document.createElement("textarea");
-            textArea.value = copyText;
+        var clipboard =  new Clipboard('.buttonClass');
 
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand("copy");
-            textArea.remove();
-        }
-    
+
+// when text is copied into clipboard use it
+clipboard.on('success', function(e) {
+  $('#log').text('Text copied into clipboard is: <' + e.text + '>');
+  e.clearSelection();
+});
 
     </script>
 
