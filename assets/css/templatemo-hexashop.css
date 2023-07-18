@@ -1436,7 +1436,7 @@ Subscribe
   width: 100%;
   height: 44px;
   line-height: 44px;
-  padding: 0px 15px;
+  padding: 0px 0px;
   font-size: 14px;
   font-style: italic;
   font-weight: 500;
@@ -1452,7 +1452,7 @@ Subscribe
 }
 
 .subscribe form button {
-  width: 44px;
+  width: 70px;
   height: 44px;
   display: inline-block;
   text-align: center;
