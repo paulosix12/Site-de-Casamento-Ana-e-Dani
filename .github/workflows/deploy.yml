@@ -13,11 +13,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Set Project Name
-        id: set-name
-        run: echo "anaedani" >> $GITHUB_OUTPUT
-
+        
   # JOB 2: Acontece no seu SERVIDOR (Apenas cópia e restart)
   deploy:
     needs: build
