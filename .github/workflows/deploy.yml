@@ -1,0 +1,43 @@
+name: Build no GitHub e Deploy no Runner
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  # JOB 1: Acontece nos servidores do GitHub (Gratuito e Rápido)
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      project_name: ${{ steps.set-name.outputs.name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set Project Name
+        id: set-name
+        run: echo "anaedani" >> $GITHUB_OUTPUT
+
+  # JOB 2: Acontece no seu SERVIDOR (Apenas cópia e restart)
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: ./dist-temp
+
+      - name: Move and Restart
+        run: |
+          PROJECT_NAME="anaedani"
+          TARGET_DIR="/data/nginx/$PROJECT_NAME"
+          
+          mkdir -p $TARGET_DIR
+          rm -rf $TARGET_DIR/*
+          cp -r ./dist-temp/* $TARGET_DIR/
+          
+          docker restart nginx
+          
+          rm -rf ./dist-temp
