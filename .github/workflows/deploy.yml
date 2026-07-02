@@ -1,47 +1,17 @@
-name: Deploy Site Casamento
+name: Deploy anaedani
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build:
+  trigger-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Upload dos artefatos
-        uses: actions/upload-artifact@v4
+      - name: Trigger deploy no pipelines
+        uses: peter-evans/repository-dispatch@v3
         with:
-          name: build-files
-          path: .
-
-  deploy:
-    needs: build
-    runs-on: self-hosted
-    steps:
-      - name: Download dos artefatos
-        uses: actions/download-artifact@v4
-        with:
-          name: build-files
-          path: ./dist-temp
-
-      - name: Publicar no nginx
-        run: |
-          PROJECT_NAME="anaedani"
-          TARGET_DIR="/data/nginx/$PROJECT_NAME"
-
-          echo "Publicando $PROJECT_NAME em $TARGET_DIR"
-
-          mkdir -p "$TARGET_DIR"
-          rm -rf "$TARGET_DIR"/*
-          cp -r ./dist-temp/* "$TARGET_DIR/"
-
-          echo "Reiniciando nginx..."
-          docker restart nginx || sudo systemctl restart nginx || sudo service nginx restart
-
-          echo "Limpando temporarios..."
-          rm -rf ./dist-temp
-
-          echo "Deploy concluido: $PROJECT_NAME"
+          token: ${{ secrets.PAT_TRIGGER }}
+          repository: paulosix12/pipelines
+          event-type: deploy
+          client-payload: '{"site_name": "anaedani", "repo_name": "Site-de-Casamento-Ana-e-Dani"}'
